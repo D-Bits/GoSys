@@ -8,9 +8,7 @@ import (
 )
 
 // Create multiple directories in a dir
-func createDirs(dirNum int64, location string) {
-
-	os.Chdir(location)
+func createDirs(dirNum int64) {
 
 	for i := 0; int64(i) < dirNum; i++ {
 		reader := bufio.NewReader(os.Stdin)
@@ -47,9 +45,10 @@ func filesMain() {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Enter a location to create dirs: ")
 		userLocation, _ := reader.ReadString('\n')
-		fmt.Print("Enter how many directories you want to create: ")
+		os.Chdir(userLocation)
+		fmt.Println("Enter how many directories you want to create: ")
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
-		createDirs(userDirNum, userLocation)
+		createDirs(userDirNum)
 	} else {
 		fmt.Print("*** Invalid option. Returning to main menu. ***")
 		main()
