@@ -19,7 +19,7 @@ func main() {
 		fmt.Printf("%d : %s \n", option, description)
 	}
 
-	// Create a new reader
+	// Create a new scanner
 	scanner := bufio.NewScanner(os.Stdin)
 	// Get a choice from the user via stdin
 	fmt.Print("Enter an int from the options above: ")
@@ -32,6 +32,9 @@ func main() {
 	} else if userChoice == 1 {
 		filesMain()
 	} else if userChoice == 2 {
+		miscMain()
+	} else {
+		fmt.Println("Invalid option.")
 		main()
 	}
 }

@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func getData(endpoint string, filename string) {
@@ -43,7 +45,7 @@ func miscMain() {
 
 	fileOptions := map[int]string{
 		0: "Main Menu",
-		1: "File System Tasks",
+		1: "Download JSON Data from a REST API",
 	}
 
 	// Display options
@@ -51,16 +53,29 @@ func miscMain() {
 		fmt.Printf("%d : %s \n", option, description)
 	}
 
-	// Create a scanner
+	// Create a scanner for menu selections
 	scanner := bufio.NewScanner(os.Stdin)
+	// Create a new reader for other values from stdin
+	reader := bufio.NewReader(os.Stdin)
 
+	// Get a choice from the user via stdin
 	fmt.Print("Enter an int from the options above: ")
-	userChoice, _ := fmt.Scan()
+	scanner.Scan()
+
+	userChoice, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 
 	if userChoice == 0 {
 		main()
 	} else if userChoice == 1 {
-		getData()
+		fmt.Print("Enter a URL: ")
+		url, _ := reader.ReadString('\n')
+		// Remove the newline before passing into getData() function
+		formattedUrl := strings.TrimSuffix(url, "\n")
+		fmt.Print("Enter a file name (without a file extension): ")
+		filename, _ := reader.ReadString('\n')
+		formattedFilename := strings.TrimSuffix(filename, "\n")
+
+		getData(formattedUrl, formattedFilename)
 	}
 
 }
