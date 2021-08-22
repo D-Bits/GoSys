@@ -36,8 +36,10 @@ func calcHash(filePath string) {
 		log.Fatal(err)
 	}
 
+	fmt.Print("Your hash is: ")
 	fmt.Printf("%x", hasher.Sum(nil))
-
+	// New line for readability
+	fmt.Println()
 }
 
 // The menu for file system tasks
@@ -68,7 +70,7 @@ func filesMain() {
 	} else if userChoice == 1 {
 		fmt.Print("Enter a location to create dirs: ")
 		userLocation, _ := reader.ReadString('\n')
-		// Remove the newline before passing into getData() function
+		// Remove the newline before passing into createDirs() function
 		formattedUserLocation := strings.TrimSuffix(userLocation, "\n")
 		os.Chdir(formattedUserLocation)
 		fmt.Println("Enter how many directories you want to create: ")
@@ -83,6 +85,8 @@ func filesMain() {
 		// Remove the newline before passing into getData() function
 		formattedFilePath := strings.TrimSuffix(userFile, "\n")
 		calcHash(formattedFilePath)
+		fmt.Print("Press enter to exit.")
+		reader.ReadString('\n')
 	} else {
 		fmt.Print("*** Invalid option. Returning to main menu. ***")
 	}
