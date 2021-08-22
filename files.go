@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 // Create multiple directories inside a dir
@@ -67,14 +68,21 @@ func filesMain() {
 	} else if userChoice == 1 {
 		fmt.Print("Enter a location to create dirs: ")
 		userLocation, _ := reader.ReadString('\n')
-		os.Chdir(userLocation)
+		// Remove the newline before passing into getData() function
+		formattedUserLocation := strings.TrimSuffix(userLocation, "\n")
+		os.Chdir(formattedUserLocation)
 		fmt.Println("Enter how many directories you want to create: ")
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 		createDirs(userDirNum)
+		// Prompt the user to press enter to exit
+		fmt.Print("Press enter to exit.")
+		reader.ReadString('\n')
 	} else if userChoice == 2 {
 		fmt.Print("Enter the absolute path of the file: ")
 		userFile, _ := reader.ReadString('\n')
-		calcHash(userFile)
+		// Remove the newline before passing into getData() function
+		formattedFilePath := strings.TrimSuffix(userFile, "\n")
+		calcHash(formattedFilePath)
 	} else {
 		fmt.Print("*** Invalid option. Returning to main menu. ***")
 	}
