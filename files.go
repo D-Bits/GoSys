@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// Create multiple directories in a dir
+// Create multiple directories inside a dir
 func createDirs(dirNum int64) {
 
 	for i := 0; int64(i) < dirNum; i++ {
@@ -35,7 +35,6 @@ func filesMain() {
 	scanner := bufio.NewScanner(os.Stdin)
 	// Get a choice from the user via stdin
 	fmt.Print("Enter an int from the options above: ")
-	scanner.Scan()
 
 	userChoice, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 
@@ -49,6 +48,7 @@ func filesMain() {
 		fmt.Println("Enter how many directories you want to create: ")
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 		createDirs(userDirNum)
+		main()
 	} else {
 		fmt.Print("*** Invalid option. Returning to main menu. ***")
 		main()

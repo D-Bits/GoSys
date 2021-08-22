@@ -34,7 +34,7 @@ func main() {
 	} else if userChoice == 2 {
 		miscMain()
 	} else {
-		fmt.Println("Invalid option.")
+		fmt.Println("*** Invalid option. ***")
 		main()
 	}
 }
