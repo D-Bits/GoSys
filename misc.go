@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// Get data from REST API endpoint, and save it to a file
 func getData(endpoint string, filename string) {
 
 	// make a GET request to fetch the JSON data
