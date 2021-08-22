@@ -76,17 +76,16 @@ func filesMain() {
 		fmt.Println("Enter how many directories you want to create: ")
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 		createDirs(userDirNum)
-		// Prompt the user to press enter to exit
-		fmt.Print("Press enter to exit.")
-		reader.ReadString('\n')
+
+		main()
 	} else if userChoice == 2 {
 		fmt.Print("Enter the absolute path of the file: ")
 		userFile, _ := reader.ReadString('\n')
 		// Remove the newline before passing into getData() function
 		formattedFilePath := strings.TrimSuffix(userFile, "\n")
 		calcHash(formattedFilePath)
-		fmt.Print("Press enter to exit.")
-		reader.ReadString('\n')
+
+		main()
 	} else {
 		fmt.Print("*** Invalid option. Returning to main menu. ***")
 	}

@@ -77,6 +77,9 @@ func miscMain() {
 		formattedFilename := strings.TrimSuffix(filename, "\n")
 
 		getData(formattedUrl, formattedFilename)
+
+		fmt.Print("Press enter to exit.")
+		reader.ReadString('\n')
 	} else {
 		fmt.Println("*** Invalid option. ***")
 	}
