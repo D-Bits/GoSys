@@ -1,8 +1,7 @@
 SHELL := /bin/bash
 
 run:
-	cd bin
-	go run apiclient
+	go run main.go files.go misc.go
 
 compile:
 	go build -o bin/
