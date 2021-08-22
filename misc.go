@@ -77,6 +77,8 @@ func miscMain() {
 		formattedFilename := strings.TrimSuffix(filename, "\n")
 
 		getData(formattedUrl, formattedFilename)
+	} else {
+		fmt.Println("*** Invalid option. ***")
 	}
 
 }
