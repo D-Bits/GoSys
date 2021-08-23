@@ -2,6 +2,8 @@ package main
 
 import (
 	"bufio"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -42,11 +44,42 @@ func getData(endpoint string, filename string) {
 
 }
 
+// Check if a password is in a data breach via HaveIBeenPwned
+func checkPassword(password string) {
+
+	// Convert the password string to bytes, so they can be hashed
+	passwordBytes := []byte(password)
+	// Hash the password
+	passwordHash := sha1.Sum(passwordBytes)
+	// Convert the hash bytes to a string
+	hashString := hex.EncodeToString(passwordHash[:])
+
+	//fmt.Printf("Your hash: %x", passwordHash)
+	// Make a request to the HaveIBeenPwned REST API
+	res, err := http.Get("https://api.pwnedpasswords.com/range/" + hashString[:5])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Parse the response body
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(hashString)
+	fmt.Println(string(body))
+
+}
+
 func miscMain() {
 
 	fileOptions := map[int]string{
-		0: "Main Menu",
-		1: "Download JSON Data from a REST API",
+		0: "Main menu",
+		1: "Download JSON data from a REST API",
+		2: "Check if password has been compromised in a data breach",
 	}
 
 	// Display options
@@ -78,10 +111,20 @@ func miscMain() {
 
 		getData(formattedUrl, formattedFilename)
 
-		fmt.Print("Press enter to exit.")
-		reader.ReadString('\n')
+		fmt.Println()
+		main()
+	} else if userChoice == 2 {
+		fmt.Print("Enter a password: ")
+		userPass, _ := reader.ReadString('\n')
+		formattedPass := strings.TrimSuffix(userPass, "\n")
+
+		checkPassword(formattedPass)
+
+		fmt.Println()
+		main()
 	} else {
 		fmt.Println("*** Invalid option. ***")
+		main()
 	}
 
 }
