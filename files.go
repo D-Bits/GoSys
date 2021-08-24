@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// FIXME: Fix multiple errors
 // Create multiple directories inside a dir
 func createDirs(dirNum int64) {
 
@@ -73,7 +74,8 @@ func filesMain() {
 		// Remove the newline before passing into createDirs() function
 		formattedUserLocation := strings.TrimSuffix(userLocation, "\n")
 		os.Chdir(formattedUserLocation)
-		fmt.Println("Enter how many directories you want to create: ")
+		fmt.Print("Enter how many directories you want to create: ")
+		scanner.Scan()
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 		createDirs(userDirNum)
 
