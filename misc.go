@@ -64,13 +64,16 @@ func checkPassword(password string) {
 
 	// Parse the response body
 	body, err := ioutil.ReadAll(res.Body)
+	bodyString := string(body)
+	hashesArray := strings.Split(bodyString, ":")
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(hashString)
-	fmt.Println(string(body))
+	// TODO: Check if password hash is in the response
+	fmt.Println(hashesArray[1])
+	fmt.Println()
 
 }
 
