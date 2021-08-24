@@ -11,9 +11,12 @@ import (
 	"strings"
 )
 
-// FIXME: Fix multiple errors
+// FIXME: Fix creating dirs in wrong directory
 // Create multiple directories inside a dir
-func createDirs(dirNum int64) {
+func createDirs(dirNum int64, location string) {
+
+	//
+	os.Chdir(location)
 
 	for i := 0; int64(i) < dirNum; i++ {
 		reader := bufio.NewReader(os.Stdin)
@@ -73,11 +76,10 @@ func filesMain() {
 		userLocation, _ := reader.ReadString('\n')
 		// Remove the newline before passing into createDirs() function
 		formattedUserLocation := strings.TrimSuffix(userLocation, "\n")
-		os.Chdir(formattedUserLocation)
 		fmt.Print("Enter how many directories you want to create: ")
 		scanner.Scan()
 		userDirNum, _ := strconv.ParseInt(scanner.Text(), 10, 64)
-		createDirs(userDirNum)
+		createDirs(userDirNum, formattedUserLocation)
 
 		main()
 	} else if userChoice == 2 {
