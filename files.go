@@ -15,7 +15,7 @@ import (
 // Create multiple directories inside a dir
 func createDirs(dirNum int64, location string) {
 
-	//
+	// Change into a directory of the user's choosing
 	os.Chdir(location)
 
 	for i := 0; int64(i) < dirNum; i++ {
