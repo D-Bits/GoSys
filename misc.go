@@ -71,10 +71,26 @@ func checkPassword(password string) {
 		log.Fatal(err)
 	}
 
-	// TODO: Check if password hash is in the response
-	fmt.Println(hashesArray[1])
-	fmt.Println()
+	tail := hashString[5:]
 
+	// FIXME: Figure out why it always returns false
+	search := func(userPassword string, list []string) bool {
+		for _, password := range list {
+			if password == userPassword[5:] {
+				return true
+			} else {
+				return false
+			}
+		}
+		return false
+	}
+
+	fmt.Println(search(tail, hashesArray))
+	/*
+		fmt.Println(hashesArray)
+		fmt.Println(hashString)
+		fmt.Println(hashString[5:])
+	*/
 }
 
 func miscMain() {
