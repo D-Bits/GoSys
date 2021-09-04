@@ -11,7 +11,6 @@ import (
 	"strings"
 )
 
-// FIXME: Fix creating dirs in wrong directory
 // Create multiple directories inside a dir
 func createDirs(dirNum int64, location string) {
 
