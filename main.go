@@ -35,5 +35,6 @@ func main() {
 		miscMain()
 	} else {
 		fmt.Println("*** Invalid option. ***")
+		main()
 	}
 }
