@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 run:
-	go run main.go files.go misc.go
+	go run main.go files.go misc.go system.go
 
 compile:
 	go build -o bin/
