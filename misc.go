@@ -73,14 +73,20 @@ func checkPassword(password string) {
 
 	tail := hashString[5:]
 
-	// FIXME: Figure out why it always returns false
+	// FIXME: #1 Figure out why it always returns false
 	search := func(userPassword string, list []string) bool {
+		fmt.Println(tail)
 		for _, password := range list {
-			if password == userPassword[5:] {
-				return true
-			} else {
-				return false
-			}
+
+			fmt.Println(password)
+			/*
+				truncHash := password[5:]
+				if truncHash == tail {
+					return true
+				} else {
+					return false
+				}
+			*/
 		}
 		return false
 	}
@@ -145,5 +151,4 @@ func miscMain() {
 		fmt.Println("*** Invalid option. ***")
 		main()
 	}
-
 }
