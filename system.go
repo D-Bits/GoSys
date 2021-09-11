@@ -18,6 +18,7 @@ func osInfo() {
 
 }
 
+// FIXME: Figure out why Windows isn't outputting IPv6 address
 func getIP() {
 
 	netFaces, err := net.InterfaceAddrs()
