@@ -10,7 +10,8 @@ import (
 var mainOptions = map[int]string{
 	0: "Exit Program",
 	1: "File System Tasks",
-	2: "Misc Tasks",
+	2: "System Info",
+	3: "Misc Tasks",
 }
 
 func main() {
@@ -32,6 +33,8 @@ func main() {
 	} else if userChoice == 1 {
 		filesMain()
 	} else if userChoice == 2 {
+		systemMain()
+	} else if userChoice == 3 {
 		miscMain()
 	} else {
 		fmt.Println("*** Invalid option. ***")
