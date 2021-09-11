@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
+	"net"
 	"os"
 	"runtime"
 	"strconv"
@@ -16,11 +18,25 @@ func osInfo() {
 
 }
 
+func getIP() {
+
+	netFaces, err := net.InterfaceAddrs()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print("IPv4 Address: ", netFaces[1], "\n")
+	fmt.Print("IPv6 Address: ", netFaces[3])
+
+}
+
 func systemMain() {
 
 	sysOptions := map[int]string{
 		0: "Main Menu",
 		1: "Get OS Info",
+		2: "Get local IP Addresses",
 	}
 
 	// Display options
@@ -41,6 +57,11 @@ func systemMain() {
 	} else if userChoice == 1 {
 		fmt.Println()
 		osInfo()
+		fmt.Println()
+		main()
+	} else if userChoice == 2 {
+		fmt.Println()
+		getIP()
 		fmt.Println()
 		main()
 	} else {
